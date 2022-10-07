@@ -1,0 +1,6 @@
+*.user
+*.obj
+**/.vs
+**/x64
+**/Debug
+**/Release
