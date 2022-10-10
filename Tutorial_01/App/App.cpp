@@ -19,6 +19,7 @@ void example_01() {
 void example_02() {
 	unsigned int u_int = 4294967295;
 	int s_int = u_int / 2;
+	u_int = u_int + 100;
 
 	printf("u_int variable size is %d bytes, value range %u..%u\n", sizeof(u_int), 0, u_int);
 	printf("s_int variable size is %d bytes, value range %d..%d\n", sizeof(s_int), -s_int - 1, s_int);
@@ -41,8 +42,13 @@ void example_04() {
 }
 
 void hometask_01() {
-	unsigned short us_int = 65535;		// value range 0..65535
+	unsigned short us_int = 65535;// value range 0..65535
+	short sh_int = us_int / 2;
+
+	printf("us_int variable size is %d bytes, value range %u..%u\n", sizeof(us_int), 0, us_int);
+	printf("sh_int variable size is %d bytes, value range %d..%d\n", sizeof(sh_int), -sh_int - 1, sh_int);
 }
+
 
 int main(int argc, char *argv[]) {
 	printf("Running example_01:\n");
