@@ -21,6 +21,8 @@
     Some additional settings may help you write programs.
     
     1. Select "Line Numbers" checkbox on Tools -> Options -> Text Editor -> All Languages menu
-    2. Press F5 and wait until application start executing. That's all for now.
+        ![Show Line Numbers](../images/tutorial_00_00.png)
+    2. Select "Automatically close the console when debugging stops" checkbox on Tools -> Options -> Debugging -> General
+        ![Automatically close the console window](../images/tutorial_00_01.png)
+    3. Press F5 and wait until application start executing. That's all for now.
     
-    ![Show Line Numbers](../images/tutorial_00_00.png)
