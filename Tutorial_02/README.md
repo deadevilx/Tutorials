@@ -13,4 +13,4 @@
     - sizeof
     - Other operators
 
-    Please read this [page](https://cplusplus.com/doc/tutorial/operators/)
+Please read this [page](https://cplusplus.com/doc/tutorial/operators/)
