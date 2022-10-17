@@ -61,3 +61,9 @@
 [Tutorial_28](Tutorial_28) -
 
 [Tutorial_29](Tutorial_29) -
+
+[docs](docs) - Documents
+
+> e.g. ["Harvey Deitel/Paul Deitel" C++ programming book](https://github.com/deadevilx/Tutorials/blob/master/docs/C-Programming_ru.pdf)
+
+[images](images) - Images
