@@ -16,11 +16,11 @@
 
 [Tutorial_06](Tutorial_06) - Functions (subprograms)
 
-[Tutorial_07](Tutorial_07) -
+[Tutorial_07](Tutorial_07) - Strings (C-Strings and C++ std::string)
 
-[Tutorial_08](Tutorial_08) -
+[Tutorial_08](Tutorial_08) - Files
 
-[Tutorial_09](Tutorial_09) -
+[Tutorial_09](Tutorial_09) - Pointers
 
 [Tutorial_10](Tutorial_10) -
 
