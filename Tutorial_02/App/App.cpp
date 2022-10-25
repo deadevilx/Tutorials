@@ -71,6 +71,11 @@ void hometask_01() {
 	*/
 
 	// ÒÓÒ ÒÂ²É ÖÈÊË
+	int i = a;
+	while ((b - 1) > 0) {
+		a = a * i;
+		b = b - 1;
+	}
 
 	printf("a ^ b = %d\n", a);
 }

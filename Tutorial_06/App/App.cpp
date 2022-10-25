@@ -11,7 +11,8 @@
 #include "main.h"
 #include "misc.h"
 
-//#define STACK_OVERFLOW
+
+#define STACK_OVERFLOW
 #ifdef STACK_OVERFLOW
 #define N_DEPTH			4096
 #else
@@ -37,10 +38,20 @@ int main(int argc, char* argv[]) {
 		for (int i = 0; i < array_sz; i++) {
 			array[i] = rand() % 1000 / 10.0;
 		}
+		
 
 		// ñòâîðè â ôàéë³ misc.cpp ôóíêö³þ "... rms(..., ...)", ÿêà ïðèéìàº ïåðøèì àðãóìåíòîì ìàñèâ array, äðóãèì ê³ëüê³ñòü åëåìåíò³â â íüîìó
 		// ³ âåðòàº ÑÅÐÅÄÍÜÎÊÂÀÄÐÀÒÈ×ÍÅ Â²ÄÕÈËÅÍÍß òèïó double
 		// âèçâè ¿¿ òóò ³ ðîçäðóêóé åëåìåíòè ìàñèâó ³, îêðåìî, ¿õ ñåðåäíüîêâàäðàòè÷íå â³äõèëåííÿ
+
+		printf("\n\nÅëåìåíòè ìàññèâó :\n");
+
+		for (int i = 0; i < array_sz; i++) {
+			printf("% lf\n", array[i]);
+		}
+		double skv = rms(array, array_sz);
+
+		printf("\nÑÅÐÅÄÍÜÎÊÂÀÄÐÀÒÈ×ÍÅ Â²ÄÕÈËÅÍÍß: \n%lf\n", skv);
 
 		delete[] array; // ÷èñòèì çà ñîáîþ
 	} while (array_sz != 0);

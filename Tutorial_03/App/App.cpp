@@ -35,9 +35,10 @@ void print_help() {
 
 void conditions_and_cycles() {
 	char cmd[128] = {0};
+	
 
-	do {
-		gets_s(cmd);
+	//while (strcmp("quit", cmd) && strcmp("exit", cmd)) {
+	for (gets_s(cmd);(strcmp("quit", cmd) && strcmp("exit", cmd));gets_s(cmd)) {
 		if (!strcmp("color", cmd)) {
 			int clr_code = 0;
 			printf("enter color code: ");
@@ -50,19 +51,32 @@ void conditions_and_cycles() {
 				printf(FG_GREEN);
 				break;
 			case 3:
+				printf(FG_YELLOW);
+				break;
+			case 4:
+				printf(FG_BLUE);
 				break;
 			default:
 				if (clr_code == 5) {
 					printf(FG_MAGENTA);
 				} else if (clr_code == 6) {
-				} else {
+					printf(FG_CYAN);
+				} else if (clr_code == 7) {
+					printf(FG_WHITE);
+				}
+				else {
 					printf("Unknown color code\n");
 				}
 			}
 		} else if (!strcmp("help", cmd)) {
 			print_help();
+		} 
+		else {
+			if (strcmp("", cmd)) 
+			printf("Unknown comand\n");
 		}
-	} while (strcmp("quit", cmd) && strcmp("exit", cmd));
+		
+	} 
 }
 
 int main(int argc, char *argv[]) {

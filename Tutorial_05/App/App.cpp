@@ -26,12 +26,25 @@ int main(int argc, char *argv[]) {
 
 		for (int i = 0; i < array_sz; i++) {
 			// Тут заповни інші параметри конуса як-то array[i].base.center.x і т.д.
-
+			array[i].base.center_x = 0;
+			array[i].base.center_y = 0;
+			array[i].base.radius = rand() % 1000 / 10.0;
 			array[i].height = rand() % 1000 / 10.0;
+			double r = array[i].base.radius;
+			double h = array[i].height;
+			double _PI = acos(-1);
+			double s = _PI * pow(r, 2);
+			double v = s * h/ 3;
+			
+			printf("Радіус %lf\n", r);
+			printf("Висота %lf\n", h);
+			printf("Площа основи %lf\n", s);
+			printf("Об'єм %lf\n", v);
+			printf("---------------------\n");
 		}
 
 		// А тут красиво роздрукуй ВСІ параметри всіх конусів, а також площу основ і обєми
-		double _PI = acos(-1);
+	
 
 		delete[] array; // чистим за собою
 	} while (array_sz != 0);
