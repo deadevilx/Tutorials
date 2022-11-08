@@ -1,5 +1,9 @@
-#  Tutorial_09 - Pointers
+#  Tutorial_09 - Files
 
-    Every variable have been placed somewhere in the program memory by C/C++ compiler. Pointer is a location of some data in a program memory.
+    This tutorial describes FILE type and basic functions to operate with it:
 
-Please read this [page](https://cplusplus.com/doc/tutorial/pointers/)
+    - fopen and fclose
+    - fseek and ftell
+    - fread and fwrite
+
+Please read this [page](https://cplusplus.com/reference/cstdio/)
