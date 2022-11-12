@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
 		int str_sz = strlen(str_3);
 		for (int i = 0; i < str_sz / 2; i++) {
 			str_3[str_sz - i] = 0; // чи '\0'
-			printf("%s\n", &str_3[i]);
+			printf("%s\n", str_3);
 		}
 	}
 

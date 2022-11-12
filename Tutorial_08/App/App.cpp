@@ -73,14 +73,21 @@ int main(int argc, char* argv[]) {
 
 	printf("Array A + B:\n\t");
 	end = &list;
+	int count = 0;                              // счетчик размера list
+
 	while (end->next != NULL) {
 		end = end->next;
+		count++;
 		printf("% 4d", end->data);
 
 	}
 	printf("\n");
+	
+
+
 
 	while (true) {
+		printf("Size of list:  %d\n", count);
 		gets_s(cmd);
 
 		if (cmd[0] == 'a') {
@@ -97,7 +104,55 @@ int main(int argc, char* argv[]) {
 			end->next->data = new_value;
 			end->next->next = NULL;
 			end = end->next;
-		} else if (cmd[0] == 'e' || cmd[0] == 'q') {
+
+
+		}
+		else if (cmd[0] == 'i') {
+			int index, k = 0;
+			int new_value;
+			MyNode* temp, * p_node;
+			sscanf(cmd, "%c %d %d", &cmd[0], &index, &new_value);
+
+			MyNode* end = &list;
+
+			if (index < 0 || index > count) {
+				printf("WRONG INDEX! Enter index from 0 to %d\n", count);
+			}
+			else {
+				while ((end->next != NULL) && (k != index)) {
+					end = end->next;
+					k++;
+				}
+
+				temp = new MyNode;
+				p_node = end->next;   // указатель на след ноду
+				end->next = temp;     // предыдущий узел указывает на новый узел
+				temp->data = new_value;  // заполняем новый узел
+				temp->next = p_node;
+				temp->prev = end;
+				if (p_node != NULL) {
+					p_node->prev = temp; //след нода указивает на новый узел
+				}
+				count++;
+			}
+		}
+				
+		  else if (cmd[0] == 'c') {
+
+			MyNode* end = &list;
+
+			while (end->next != NULL) {
+				end = end->next;
+			}
+
+			while (end->prev != NULL) {
+				MyNode* prev = end->prev;
+				end->prev->next = NULL;
+				delete end;
+				end = prev;
+			}
+		}
+		  else if (cmd[0] == 'e' || cmd[0] == 'q') {
 			break;
 		} else {
 			printf("Unknown command\n");
