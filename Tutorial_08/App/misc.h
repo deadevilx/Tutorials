@@ -10,4 +10,8 @@ struct MyNode {
 	MyNode *next;
 };
 
+void append(int new_value, MyNode* end, int& count);
+void insert(int new_value, MyNode* end, int index, int& count);
+void del(MyNode* end, int index, int& count);
+void clear(MyNode* end);
 #endif

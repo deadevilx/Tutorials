@@ -20,6 +20,7 @@ void print_help() {
 	printf("\n");
 }
 
+
 int main(int argc, char* argv[]) {
 	MyNode list = {NULL, 0, NULL};
 	int *array_a = NULL;
@@ -82,9 +83,6 @@ int main(int argc, char* argv[]) {
 
 	}
 	printf("\n");
-	
-
-
 
 	while (true) {
 		printf("Size of list:  %d\n", count);
@@ -92,92 +90,42 @@ int main(int argc, char* argv[]) {
 
 		if (cmd[0] == 'a') {
 			int new_value;
+			MyNode* end = &list;
 			sscanf(cmd, "%c %d", &cmd[0], &new_value);
 
-			MyNode *end = &list;
-
-			while (end->next != NULL)
-				end = end->next;
-
-			end->next = new MyNode;
-			end->next->prev = end;
-			end->next->data = new_value;
-			end->next->next = NULL;
-			end = end->next;
-
-			count++;
+			append(new_value, end, count);
 		}
 		else if (cmd[0] == 'i') {
-			int index, k = 0;
+			int index; 
 			int new_value;
-			MyNode* new_node, * next_node, *end = &list;
+			MyNode *end = &list;
 			sscanf(cmd, "%c %d %d", &cmd[0], &index, &new_value);
 
 			if (index <= 0 || index > count+1) {
 				printf("WRONG INDEX! Enter index from 1 to %d\n", count+1);
 			}
 			else {
-				while ((end->next != NULL) && (k != index - 1)) {
-					end = end->next;
-					k++;
-				}
-				new_node = new MyNode;
-				next_node = end->next;   // указатель на след ноду
-				end->next = new_node;     // текущая нода получает *next новой ноды
-				new_node->data = new_value;  // заполняем новую ноду
-				new_node->next = next_node;  //
-				new_node->prev = end;        //
-				if (next_node != NULL) {
-					next_node->prev = new_node; //след нода(если она не NULL) указывает на новую ноду
-				}
-				count++;
+				insert(new_value, end, index, count);
 			}
 		}
 		else if (cmd[0] == 'd') {
 			if (count != 0) {
-				int index, k = 0;
-				MyNode* next_node, * prev_node, * end = &list;
+				int index; 
+				MyNode * end = &list;
 				sscanf(cmd, "%c %d", &cmd[0], &index);
 
 				if (index <= 0 || index > count) {
 					printf("WRONG INDEX! Enter index from 1 to %d\n", count);
 				}
 				else {
-					while ((end->next != NULL) && (k != index)) {
-						end = end->next;
-						k++;
-					}
-					// указатель на удаляемой ноде
-					prev_node = end->prev;   // указатель на пред ноду
-					next_node = end->next;   // указатель на след ноду
-					if (prev_node != NULL) {
-						prev_node->next = end->next;  // нода перед удаляемой(если она не NULL) получает *next удаляемого
-					}
-					if (next_node != NULL) {
-						next_node->prev = end->prev;  //нода после удаляемой(если она не NULL) получает *prev удаляемого
-					}
-					delete end;               // удаляем ноду
-					count--;
+					del(end, index, count);
 				}
 			}
 			else { printf("\nList is empty!\n"); }
-		}
-		
-				
+		}				
 		  else if (cmd[0] == 'c') {
-
-			MyNode* end = &list, * prev_node;
-
-			while (end->next != NULL) {
-				end = end->next;
-			}
-			//указатель находится на последней ноде
-			while (end->prev != NULL) {
-				prev_node = end->prev;    // указатель на пред ноду
-				prev_node->next = NULL;   // пред нода получает в *next значение NULL
-				delete end;               // удаляем текущую ноду
-				end = prev_node;          // указатель становится на пред ноду
-			}
+			MyNode* end = &list; 
+			clear(end);
 			count = 0;
 		}
 		  else if (cmd[0] == 'e' || cmd[0] == 'q') {
