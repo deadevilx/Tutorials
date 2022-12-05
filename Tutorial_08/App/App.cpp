@@ -125,6 +125,7 @@ int main(int argc, char* argv[]) {
 		}				
 		  else if (cmd[0] == 'c') {
 			MyNode* end = &list; 
+
 			clear(end);
 			count = 0;
 		}
