@@ -15,7 +15,7 @@ void print_help() {
 	printf("p <pos> - print customer at <pos> index info\n");
 	printf("a - append customer\n");
 	printf("u <pos> - update custoper at <pos> index\n");
-	printf("i <pos> - insert customer after <pos> index\n");
+	printf("i <pos> - insert customer at <pos> index\n");
 	printf("d <pos> - delete customer at <pos> index\n");
 	printf("c - drop all database\n");
 	printf("t - convert %s to %s file\n", DB_FILE_NAME, TXT_FILE_NAME);
@@ -47,7 +47,12 @@ int main(int argc, char *argv[]) {
 
 			sscanf(user_query, "%c %d", &user_query[0], &index);
 
-			if (fs_size(DB_FILE_NAME) == 0 || fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
+			if (fs_size(DB_FILE_NAME) == 0) {
+				printf("File is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
 				printf("Wrong index %d, must be [0; %d]\n", index, fs_size(DB_FILE_NAME) / sizeof(Customer) - 1);
 				continue;
 			}
@@ -63,9 +68,9 @@ int main(int argc, char *argv[]) {
 			printf("\tGender (male/female): ");
 			scanf("%s", user_gender);
 			printf("\tAccount (10 digits): ");
-			scanf("%s", &c.account);
+			scanf("%d", &c.account);
 			printf("\tPhone: ");
-			scanf("%s", &c.phone);
+			scanf("%d", &c.phone);
 
 			if (!strcmp("male", user_gender)) {
 				c.gender = G_MALE;
@@ -82,7 +87,12 @@ int main(int argc, char *argv[]) {
 
 			sscanf(user_query, "%c %d", &user_query[0], &index);
 
-			if (fs_size(DB_FILE_NAME) == 0 || fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
+			if (fs_size(DB_FILE_NAME) == 0) {
+				printf("File is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
 				printf("Wrong index %d, must be [0; %d]\n", index, fs_size(DB_FILE_NAME) / sizeof(Customer) - 1);
 				continue;
 			}
@@ -118,7 +128,12 @@ int main(int argc, char *argv[]) {
 
 			sscanf(user_query, "%c %d", &user_query[0], &index);
 
-			if (fs_size(DB_FILE_NAME) == 0 || fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
+			if (fs_size(DB_FILE_NAME) == 0) {
+				printf("File is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
 				printf("Wrong index %d, must be [0; %d]\n", index, fs_size(DB_FILE_NAME) / sizeof(Customer) - 1);
 				continue;
 			}
@@ -154,7 +169,12 @@ int main(int argc, char *argv[]) {
 
 			sscanf(user_query, "%c %d", &user_query[0], &index);
 
-			if (fs_size(DB_FILE_NAME) == 0 || fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
+			if (fs_size(DB_FILE_NAME) == 0) {
+				printf("File is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (fs_size(DB_FILE_NAME) / sizeof(Customer) <= index || index < 0) {
 				printf("Wrong index %d, must be [0; %d]\n", index, fs_size(DB_FILE_NAME) / sizeof(Customer) - 1);
 				continue;
 			}
