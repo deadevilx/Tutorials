@@ -224,3 +224,69 @@ int db_del_customer(const char* fname, int index) {
 
 	return 0;
 }
+
+int db_upd_customer_spec(const char* fname, int index) {
+	FILE* f;
+	Customer c;
+	char choice = 0;
+	char user_gender[128] = { 0 };
+
+	f = fopen(fname, "rb+");
+	if (f) {
+		fseek(f, index * sizeof(Customer), SEEK_SET);
+
+		fread(&c, sizeof(c), 1, f);
+
+		printf("Customer #%d update:\n", index);
+		printf("\tUpdate First Name ? (y/n): ");
+		scanf("\n%c", &choice);
+		if (choice == 'y') {
+			printf("\tNew First Name: ");
+			scanf("%s", &c.first_name);
+		}
+		printf("\tUpdate Last Name ? (y/n): ");
+		scanf("\n%c", &choice);
+		if (choice == 'y') {
+			printf("\tNew Last Name: ");
+			scanf("%s", &c.last_name);
+		}
+		printf("\tUpdate Gender ? (y/n): ");
+		scanf("\n%c", &choice);
+		if (choice == 'y') {
+			printf("\tNew Gender (male/female) : ");
+			scanf("%s", &user_gender);
+			if (!strcmp("male", user_gender)) {
+				c.gender = G_MALE;
+			}
+			else if (!strcmp("female", user_gender)) {
+				c.gender = G_FEMALE;
+			}
+			else {
+				printf("Error: unknown gender\n");
+				return -5;
+			}
+		}
+		printf("\tUpdate Account ? (y/n): ");
+		scanf("\n%c", &choice);
+		if (choice == 'y') {
+			printf("\tNew Account (10 digits): ");
+			scanf("%d", &c.account);
+		}
+		printf("\tUpdate Phone ? (y/n): ");
+		scanf("\n%c", &choice);
+		if (choice == 'y') {
+			printf("\tNew Phone: ");
+			scanf("%d", &c.phone);
+		}
+		
+		fseek(f, index * sizeof(Customer), SEEK_SET);
+		fwrite(&c, sizeof(c), 1, f);
+
+		fclose(f);
+	}
+	else {
+		return -3;
+	}
+	return 0;
+}
+

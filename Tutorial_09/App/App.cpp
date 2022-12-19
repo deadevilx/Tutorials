@@ -84,6 +84,7 @@ int main(int argc, char *argv[]) {
 			db_add_customer(DB_FILE_NAME, c);
 		} else if (user_query[0] == 'u') {
 			int index = 0;
+			char p;
 
 			sscanf(user_query, "%c %d", &user_query[0], &index);
 
@@ -97,32 +98,40 @@ int main(int argc, char *argv[]) {
 				continue;
 			}
 
-			Customer c;
+			printf("Do you want to update all parameters or specific ??  (a/s): ");
+			scanf("%c", &p);
 
-			printf("Customer #%d update:\n", index);
-			printf("\tFirst Name: ");
-			scanf("%s", c.first_name);
-			printf("\tLast Name: ");
-			scanf("%s", c.last_name);
-			printf("\tGender (male/female): ");
-			scanf("%s", user_gender);
-			printf("\tAccount (10 digits): ");
-			scanf("%d", &c.account);
-			printf("\tPhone: ");
-			scanf("%d", &c.phone);
+			if (p == 'a') {
+				Customer c;
 
-			if (!strcmp("male", user_gender)) {
-				c.gender = G_MALE;
-			}
-			else if (!strcmp("female", user_gender)) {
-				c.gender = G_FEMALE;
-			}
-			else {
-				printf("Error: unknown gender\n");
-				continue;
-			}
+				printf("Customer #%d update:\n", index);
+				printf("\tFirst Name: ");
+			    scanf("%s", c.first_name);
+				printf("\tLast Name: ");
+				scanf("%s", c.last_name);
+				printf("\tGender (male/female): ");
+				scanf("%s", user_gender);
+				printf("\tAccount (10 digits): ");
+				scanf("%d", &c.account);
+				printf("\tPhone: ");
+				scanf("%d", &c.phone);
 
-			db_upd_customer(DB_FILE_NAME, c, index);
+				if (!strcmp("male", user_gender)) {
+					c.gender = G_MALE;
+				}
+				else if (!strcmp("female", user_gender)) {
+					c.gender = G_FEMALE;
+				}
+				else {
+					printf("Error: unknown gender\n");
+					continue;
+				}
+
+				db_upd_customer(DB_FILE_NAME, c, index);
+			}
+			else if (p == 's') {
+				db_upd_customer_spec(DB_FILE_NAME, index);
+			}
 		} else if (user_query[0] == 'i') {
 			int index = 0;
 
