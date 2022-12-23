@@ -22,11 +22,11 @@
 
 [Tutorial_09](Tutorial_09) - Files
 
-[Tutorial_10](Tutorial_10) -
+[Tutorial_10](Tutorial_10) - Classes, Encapsulation, Inheritance, Polymorphism
 
-[Tutorial_11](Tutorial_11) -
+[Tutorial_11](Tutorial_11) - Threads, Semaphores, Mutexes
 
-[Tutorial_12](Tutorial_12) -
+[Tutorial_12](Tutorial_12) - Graphical User Interfaces
 
 [Tutorial_13](Tutorial_13) -
 
