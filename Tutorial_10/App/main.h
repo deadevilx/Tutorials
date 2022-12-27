@@ -5,7 +5,4 @@
 #define APP_AUTHOR			"deadevilx"
 #define GIT_REPO			"git@github.com/" APP_AUTHOR "/Tutorials.git"
 
-#define DB_FILE_NAME		"customers.db"
-#define TXT_FILE_NAME		"customers.txt"
-
 #endif
