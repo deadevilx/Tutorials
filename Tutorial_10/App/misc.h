@@ -20,7 +20,7 @@ private:
 protected:
 	EPerson pType;
 public:
-	static const int USER_NAME_SZ = 256;
+	static const int USER_NAME_SZ = 128;
 	static const int PERSON_ITEM_SZ = 512;
 
 	Person() {
@@ -83,8 +83,18 @@ protected:
 public:
 	Employee() : Person() {
 		pType = P_EMPLOYEE;
-
+		role = R_WORKER;
+		salary = 0;
+		month_bonus = 0;
 	};
+
+	ERole getRole() { return role; };
+	unsigned getSalary() { return salary; };
+	unsigned getMonth_bonus() { return month_bonus; };
+
+	void setRole(ERole role) { this->role = role; };
+	void setSalary(int salary) { this->salary = salary; };
+	void setMonth_bonus(int month_bonus) { this->month_bonus = month_bonus; };
 
 	virtual int showInfo();
 	virtual EPerson getPersonType();
@@ -99,8 +109,9 @@ bool db_exists(const char *fname);
 int fs_size(const char *fname);
 
 int db_save();
-int db_load();
+int db_load(const char *);
 int db_save_txt();
+Person* add_person();
 
 extern std::vector<Person *> persons;
 

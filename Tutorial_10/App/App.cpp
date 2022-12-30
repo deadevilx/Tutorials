@@ -26,13 +26,14 @@ void print_help() {
 }
 
 
-int main(int argc, char *argv[]) {
-	char user_query[1024] = {0};
-	char strbuf_abc[128] = {0};
+int main(int argc, char* argv[]) {
+	char user_query[1024] = { 0 };
+	char strbuf_abc[128] = { 0 };
+	char strbuf_role[128] = { 0 };
 	int ibuf = 0;
 	unsigned ubuf = 0;
 
-	db_load();
+	db_load(DB_FILE_NAME);
 
 	print_help();
 
@@ -56,78 +57,96 @@ int main(int argc, char *argv[]) {
 				printf("Persons database is empty!\n");
 				printf("\n> ");
 				continue;
-			} else if (index >= persons.size() || index < 0) {
+			}
+			else if (index >= persons.size() || index < 0) {
 				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
 				continue;
 			}
 
 			persons[index]->showInfo();
-		} else if (user_query[0] == 'a') {
-			printf("Person type (%d - Customer, %d - Employee): ", P_CUSTOMER, P_EMPLOYEE);
-			scanf("%d", &ibuf);
+		}
+		else if (user_query[0] == 'a') {
+			persons.push_back(add_person());
+	    }
+		else if (user_query[0] == 'u') {
+			int index = 0;
 
-			if (ibuf == P_CUSTOMER) {
-				Person *p = new Customer();
+			sscanf(user_query, "%c %d", &user_query[0], &index);
 
-				printf("\tFirst Name: ");
-				scanf("%s", strbuf_abc);
-				p->setFirstName(strbuf_abc);
-
-				printf("\tLast Name: ");
-				scanf("%s", strbuf_abc);
-				p->setLastName(strbuf_abc);
-
-				printf("\tGender (male/female): ");
-				scanf("%s", strbuf_abc);
-				if (!strcmp("male", strbuf_abc)) {
-					p->setGender(G_MALE);
-				} else if(!strcmp("female", strbuf_abc)) {
-					p->setGender(G_FEMALE);
-				} else {
-					printf("Error: unknown gender\n");
-					continue;
-				}
-
-				printf("\tAccount (10 digits): ");
-				scanf("%d", &ibuf);
-				((Customer *)p)->setAccount(ibuf);
-
-				printf("\tPhone: ");
-				scanf("%d", &ibuf);
-				((Customer *)p)->setPhone(ibuf);
-
-				persons.push_back(p);
-			} else if (ibuf == P_EMPLOYEE) {
-				Person *p = new Employee();
-
-
-				persons.push_back(p);
-			} else {
+			if (persons.empty()) {
+				printf("Persons database is empty!\n");
+				printf("\n> ");
+				continue;
 			}
-		} else if (user_query[0] == 'u') {
-		} else if (user_query[0] == 'i') {
-		} else if (user_query[0] == 'd') {
-		} else if (user_query[0] == 'c') {
+			else if (index >= persons.size() || index < 0) {
+				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
+				continue;
+			}
+			persons.erase(persons.begin() + index);
+			persons.insert(persons.begin() + index, add_person());
+		}
+		else if (user_query[0] == 'i') {
+			int index = 0;
+
+			sscanf(user_query, "%c %d", &user_query[0], &index);
+
+			if (persons.empty()) {
+				printf("Persons database is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (index >= persons.size() || index < 0) {
+				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
+				continue;
+			}
+			persons.insert(persons.begin()+index, add_person());
+		
+		}
+		else if (user_query[0] == 'd') {
+			int index = 0;
+
+			sscanf(user_query, "%c %d", &user_query[0], &index);
+
+			if (persons.empty()) {
+				printf("Persons database is empty!\n");
+				printf("\n> ");
+				continue;
+			}
+			else if (index >= persons.size() || index < 0) {
+				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
+				continue;
+			}
+			persons.erase(persons.begin() + index);
+		}
+		else if (user_query[0] == 'c') {
+			for (int i = 0; i < persons.size(); i++) {
+				delete persons[i];
+			}
 			persons.clear();
-		} else if (user_query[0] == 't') {
+		}
+		else if (user_query[0] == 't') {
 			db_save_txt();
-		} else if (user_query[0] == 'h') {
+		}
+		else if (user_query[0] == 'h') {
 			print_help();
-		} else if (user_query[0] == 'e' || user_query[0] == 'q') {
+		}
+		else if (user_query[0] == 'e' || user_query[0] == 'q') {
 			break;
-		} else {
-			printf("Unknown command\n");
+		}
+			else {
+				printf("Unknown command\n");
+			}
+
+			printf("\n> ");
 		}
 
-		printf("\n> ");
+		db_save();
+
+		for (int i = 0; i < persons.size(); i++) {
+			delete persons[i];
+		}
+		persons.clear();
+
+		//	printf("Press any key :)\n");
+		//	int key = _getch();
 	}
-
-	db_save();
-
-	for (int i = 0; i < persons.size(); i++) {
-		delete persons[i];
-	}
-
-	//	printf("Press any key :)\n");
-	//	int key = _getch();
-}
