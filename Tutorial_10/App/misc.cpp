@@ -288,9 +288,6 @@ EPerson Employee::getPersonType() {
 	return P_EMPLOYEE;
 }
 
-void Employee::donate_bonus(const int donate_to, unsigned sum) {
-}
-
 Person* add_person() {
 	int ibuf = 0;
 	char strbuf_abc[128] = { 0 };

@@ -19,7 +19,6 @@ void print_help() {
 	printf("d <pos> - delete person at <pos> index\n");
 	printf("c - drop all database\n");
 	printf("t - generate %s file\n", TXT_FILE_NAME);
-	printf("w - donate <pos1> employee month bonus to <pos2> employee\n", TXT_FILE_NAME);
 	printf("h - print help info\n");
 	printf("e or q - exit program\n");
 	printf("\n");

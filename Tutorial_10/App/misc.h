@@ -99,8 +99,6 @@ public:
 	virtual int showInfo();
 	virtual EPerson getPersonType();
 
-	void donate_bonus(const int donate_to, unsigned sum);
-
 	virtual ~Employee() {
 	};
 };
