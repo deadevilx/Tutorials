@@ -81,6 +81,7 @@ int main(int argc, char* argv[]) {
 				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
 				continue;
 			}
+			delete persons[index];
 			persons.erase(persons.begin() + index);
 			persons.insert(persons.begin() + index, add_person());
 		}
@@ -115,6 +116,7 @@ int main(int argc, char* argv[]) {
 				printf("Wrong index %d, must be [0; %d]\n", index, persons.size() - 1);
 				continue;
 			}
+			delete persons[index];
 			persons.erase(persons.begin() + index);
 		}
 		else if (user_query[0] == 'c') {

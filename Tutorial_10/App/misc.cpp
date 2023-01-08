@@ -157,11 +157,11 @@ int db_save_txt() {
 		EPerson pType = persons[i]->getPersonType();
 
 		if (pType == P_CUSTOMER) {
-			fprintf(f, "Customer: \n");
+			fprintf(f, "Customer:\n");
 			char* pstr = persons[i]->getFirstName();
-			fprintf(f, "First name: %s \n", pstr);
+			fprintf(f, "First name: %s\n", pstr);
 			pstr = persons[i]->getLastName();
-			fprintf(f, "Last name: %s \n", pstr);
+			fprintf(f, "Last name: %s\n", pstr);
 			EGender g = persons[i]->getGender();
 			switch (g) {
 			case G_MALE:
@@ -174,17 +174,17 @@ int db_save_txt() {
 				fprintf(f, "Gender: unknown\n");
 			}
 			int account = ((Customer*)persons[i])->getAccount();
-			fprintf(f, "Account: %d \n", account);
+			fprintf(f, "Account: %d\n", account);
 			int phone = ((Customer*)persons[i])->getPhone();
-			fprintf(f, "Phone: %d \n", phone);
+			fprintf(f, "Phone: %d\n", phone);
 			fprintf(f, "\n");
 		}
 		else if (pType == P_EMPLOYEE) {
-			fprintf(f, "Employee: \n");
+			fprintf(f, "Employee:\n");
 			char* pstr = persons[i]->getFirstName();
-			fprintf(f, "First name: %s \n", pstr);
+			fprintf(f, "First name: %s\n", pstr);
 			pstr = persons[i]->getLastName();
-			fprintf(f, "Last name: %s \n", pstr);
+			fprintf(f, "Last name: %s\n", pstr);
 			EGender g = persons[i]->getGender();
 			switch (g) {
 			case G_MALE:
@@ -211,9 +211,9 @@ int db_save_txt() {
 				fprintf(f, "Role: unknown\n");
 			}
 			unsigned salary = ((Employee*)persons[i])->getSalary();
-			fprintf(f, "Salary: %d \n", salary);
+			fprintf(f, "Salary: %d\n", salary);
 			unsigned month_bonus = ((Employee*)persons[i])->getMonth_bonus();
-			fprintf(f, "Month bonus: %d \n", month_bonus);
+			fprintf(f, "Month bonus: %d\n", month_bonus);
 			fprintf(f, "\n");
 		}
 	}
@@ -305,17 +305,16 @@ Person* add_person() {
 		scanf("%s", strbuf_abc);
 		p->setLastName(strbuf_abc);
 
-		bool a = true;
-		while (a) {
+		while (true) {
 			printf("\tGender (male/female): ");
 			scanf("%s", strbuf_abc);
 			if (!strcmp("male", strbuf_abc)) {
 				p->setGender(G_MALE);
-				a = false;
+				break;
 			}
 			else if (!strcmp("female", strbuf_abc)) {
 				p->setGender(G_FEMALE);
-				a = false;
+				break;
 			}
 			else {
 				printf("Error: unknown gender\n");
@@ -342,17 +341,16 @@ Person* add_person() {
 		scanf("%s", strbuf_abc);
 		p->setLastName(strbuf_abc);
 
-		bool a = true;
-		while (a) {
+		while (true) {
 			printf("\tGender (male/female): ");
 			scanf("%s", strbuf_abc);
 			if (!strcmp("male", strbuf_abc)) {
 				p->setGender(G_MALE);
-				a = false;
+				break;
 			}
 			else if (!strcmp("female", strbuf_abc)) {
 				p->setGender(G_FEMALE);
-				a = false;
+				break;
 			}
 			else {
 				printf("Error: unknown gender\n");
@@ -360,21 +358,20 @@ Person* add_person() {
 			}
 		}
 
-		bool b = true;
-		while (b) {
+		while (true) {
 			printf("\tRole (worker/manager/director): ");
 			scanf("%s", strbuf_abc);
 			if (!strcmp("worker", strbuf_abc)) {
 				((Employee*)p)->setRole(R_WORKER);
-				b = false;
+				break;
 			}
 			else if (!strcmp("manager", strbuf_abc)) {
 				((Employee*)p)->setRole(R_MANAGER);
-				b = false;
+				break;
 			}
 			else if (!strcmp("director", strbuf_abc)) {
 				((Employee*)p)->setRole(R_DIRECTOR);
-				b = false;
+				break;
 			}
 			else {
 				printf("Error: unknown role\n");
