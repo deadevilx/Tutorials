@@ -7,6 +7,8 @@ int ball_pos_x = 0;
 int ball_pos_y = 0;
 int ball_x_inc = 2;
 int ball_y_inc = -2;
+int user1_bat_pos = 0;
+int user1_bat_inc = 20;
 
 [STAThreadAttribute]
 void Main(array<String ^> ^args) {
